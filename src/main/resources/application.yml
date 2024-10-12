@@ -1,0 +1,20 @@
+server:
+  port: 9095
+
+
+spring:
+  application:
+    name: learning
+  
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: myKafkaGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      
