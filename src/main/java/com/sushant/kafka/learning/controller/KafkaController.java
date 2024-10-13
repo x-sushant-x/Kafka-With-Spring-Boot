@@ -20,7 +20,7 @@ public class KafkaController {
     @RequestMapping(value = "/produce", method = RequestMethod.POST)
     public void produceData(final @RequestBody Object data,
                             final @RequestParam(name = "topic") String topic,
-                            final @RequestParam(name = "key") String key) {
-        kafkaProducerService.sendMessage(topic, key, data.toString());
+                            final @RequestParam(name = "key") String key) throws Exception {
+        kafkaProducerService.sendMessage(topic, key, data);
     }
 }

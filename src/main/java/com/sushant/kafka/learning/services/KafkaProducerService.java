@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Service
 public class KafkaProducerService {
     private final KafkaTemplate<String, String> kafkaTemplate;
@@ -13,7 +15,9 @@ public class KafkaProducerService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendMessage(String topic, String key, String message) {
-        kafkaTemplate.send(topic, key, message);
+    public void sendMessage(String topic, String key, Object message) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String dataToSend = objectMapper.writeValueAsString(message);
+        kafkaTemplate.send(topic, key, dataToSend);
     }
 }
