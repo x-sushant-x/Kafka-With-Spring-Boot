@@ -12,6 +12,8 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
+import com.sushant.kafka.learning.components.KafkaListener;
+
 @Configuration
 public class Kafka {
     @Value("${spring.kafka.producer.bootstrap-servers}")
@@ -32,7 +34,9 @@ public class Kafka {
     }
 
     @Bean
-    public KafkaTemplate<String, String> kafkaTemplate() {
-        return new KafkaTemplate<String, String>(producerFactory());
+    public KafkaTemplate<String, String> kafkaTemplate(ProducerFactory<String, String> producerFactory, KafkaListener producListener) {
+        KafkaTemplate<String, String> kafkaTemplate = new KafkaTemplate<String, String>(producerFactory());
+        kafkaTemplate.setProducerListener(producListener);
+        return kafkaTemplate;
     }
 }
