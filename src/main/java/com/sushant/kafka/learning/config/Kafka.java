@@ -12,7 +12,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
-import com.sushant.kafka.learning.components.KafkaListener;
+import com.sushant.kafka.learning.components.KafkaCallbackListener;
 
 @Configuration
 public class Kafka {
@@ -34,7 +34,7 @@ public class Kafka {
     }
 
     @Bean
-    public KafkaTemplate<String, String> kafkaTemplate(ProducerFactory<String, String> producerFactory, KafkaListener producListener) {
+    public KafkaTemplate<String, String> kafkaTemplate(ProducerFactory<String, String> producerFactory, KafkaCallbackListener producListener) {
         KafkaTemplate<String, String> kafkaTemplate = new KafkaTemplate<String, String>(producerFactory());
         kafkaTemplate.setProducerListener(producListener);
         return kafkaTemplate;

@@ -7,7 +7,7 @@ import org.springframework.kafka.support.ProducerListener;
 
 
 @Configuration
-public class KafkaListener implements ProducerListener<String, String> {
+public class KafkaCallbackListener implements ProducerListener<String, String> {
 
     @Override
     public void onSuccess(ProducerRecord<String, String> producerRecord, RecordMetadata recordMetadata) {
